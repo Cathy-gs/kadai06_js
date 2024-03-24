@@ -3,65 +3,65 @@
     {
       "sys": { "id": "1" },
       "fields": {
-        "title": "精進弁当〜春〜",
-        "price": 10.99,
+        "title": "和食SHOJIN 4食分",
+        "price": 2800,
         "image": { "fields": { "file": { "url": "./images/a_product-1.png" } } }
       }
     },
     {
       "sys": { "id": "2" },
       "fields": {
-        "title": "king panel bed",
-        "price": 12.99,
+        "title": "洋食SHOJIN 4食分",
+        "price": 2800,
         "image": { "fields": { "file": { "url": "./images/a_product-2.png" } } }
       }
     },
     {
       "sys": { "id": "3" },
       "fields": {
-        "title": "single panel bed",
-        "price": 12.99,
+        "title": "SHOJIN スープ・汁物 4食分",
+        "price": 2400,
         "image": { "fields": { "file": { "url": "./images/a_product-3.png" } } }
       }
     },
     {
       "sys": { "id": "4" },
       "fields": {
-        "title": "twin panel bed",
-        "price": 22.99,
+        "title": "野菜だけSHOJIN",
+        "price": 2800,
         "image": { "fields": { "file": { "url": "./images/a_product-4.png" } } }
       }
     },
     {
       "sys": { "id": "5" },
       "fields": {
-        "title": "fridge",
-        "price": 88.99,
+        "title": "SHOJINスイーツ",
+        "price": 2000,
         "image": { "fields": { "file": { "url": "./images/a_product-5.png" } } }
       }
     },
     {
       "sys": { "id": "6" },
       "fields": {
-        "title": "dresser",
-        "price": 32.99,
-        "image": { "fields": { "file": { "url": "./images/product-6.jpeg" } } }
+        "title": "おまかせSHOJIN 8食/月",
+        "price": 4000,
+        "image": { "fields": { "file": { "url": "./images/a_product-6.png" } } }
       }
     },
     {
       "sys": { "id": "7" },
       "fields": {
-        "title": "couch",
-        "price": 45.99,
-        "image": { "fields": { "file": { "url": "./images/product-7.jpeg" } } }
+        "title": "おまかせSHOJIN 16食/月",
+        "price": 7500,
+        "image": { "fields": { "file": { "url": "./images/a_product-7.png" } } }
       }
     },
     {
       "sys": { "id": "8" },
       "fields": {
-        "title": "table",
-        "price": 33.99,
-        "image": { "fields": { "file": { "url": "./images/product-8.jpeg" } } }
+        "title": "つくりおきSHOJIN 10食/冷凍",
+        "price": 7500,
+        "image": { "fields": { "file": { "url": "./images/a_product-8.png" } } }
       }
     }
   ]

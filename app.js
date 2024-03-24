@@ -49,14 +49,15 @@ class UI{
                     <img 
                         src=${product.image} 
                         alt="product" 
-                        class="product-img">
+                        class="product-img"
+                    />
                     <button class="bag-btn" data-id=${product.id}>
                         <i class="fas fa-shopping-cart"></i>
-                        add to bag
+                        カートに入れる
                     </button>
                 </div>
                 <h3>${product.title}</h3>
-                <h4>$${product.price}</h4>
+                <h4>¥${product.price}</h4>
             </article>
             <!-- single product end -->
             `;
@@ -70,12 +71,12 @@ class UI{
             let id = button.dataset.id;
             let inCart = cart.find (item => item.id === id);
             if(inCart){
-                button.innerHTML = "In Cart";
+                button.innerHTML = "カートに入ってます";
                 button.disabled = true
             }
           
                 button.addEventListener ('click',(event)=>{
-                    event.target.innerText = "In Cart";
+                    event.target.innerText = "カートに入ってます";
                     event.target.disabled = true;
                     // get product from products
                     let cartItem = {...Storage.getProduct(id),amount:1};
@@ -115,8 +116,8 @@ class UI{
         <img src=${item.image} alt="product">
         <div>
             <h4>${item.title}</h4>
-            <h5>$${item.price}</h5>
-            <span class="remove-item date-id=${item.id}>remove</span>
+            <h5>¥${item.price}</h5>
+            <span class="remove-item" date-id=${item.id}>削除</span>
         </div>
         <div>
             <i class="fas fa-chevron-up" date-id=${item.id}></i>
@@ -134,7 +135,7 @@ class UI{
         this.setCartValues(cart);
         this.populateCart(cart);
         cartBtn.addEventListener('click',this.showCart);
-        closeCartBtn.addEventListener('click',this.hideCart);
+        closeCartBtn.addEventListener('click',this.hideCart)
     }
     populateCart(cart){
         cart.forEach(item => this.addCartItem(item));
@@ -142,6 +143,57 @@ class UI{
     hideCart(){
         cartOverlay.classList.remove("transparentBcg");
         cartDOM.classList.remove("showCart");
+    }
+    cartLogic(){
+        //clear cart button
+        clearCartBtn.addEventListener("click",() => {
+            this.clearCart();
+        });
+        // cart functionality
+        cartContent.addEventListener('click',event =>{
+            if(event.target.classList.contains('remove-item')
+            ){
+                let removeItem = event.target;
+                let id = removeItem.dataset.id;
+                cartContent.removeChild(removeItem.parentElement.parentElement);
+
+                this.removeItem(id);
+            }
+            else if(event.target.classList.contains("fa-chevron-up")){
+                let addAmount = event.target;
+                let id = addAmount.dataset.id;
+                let tempItem = cart.find(item => item.id === id);
+                tempItem.amount = tempItem.amount + 1;
+                Storage.saveCart(cart);
+                this.setCartValues(cart);
+                addAmount.nextElementSibling.innerText = tempItem.addAmount;
+            }
+            // else if (event.target.classList.contains("fa-chevron-down")){
+
+            // }
+        });
+    }
+    clearCart(){
+       let cartItems = cart.map(item => item.id);
+       cartItems.forEach(id => this.removeItem(id));
+        console.log(cartContent.children);
+
+       while(cartContent.children.length >0){
+        cartContent.removeChild(cartContent.children[0])
+       }
+       this.hideCart();
+    }
+    removeItem(id){
+        cart = cart.filter(item => item.id !== id);
+        this.setCartValues(cart);
+        Storage.saveCart(cart);
+        let button = this.getSingleButton(id);
+        button.disabled = false;
+        button.innerHTML = `<i class="fas fa-shopping-cart"></i>
+        カートに入れる`;
+    }
+    getSingleButton(id){
+        return buttonsDOM.find(button => button.dataset.id === id);
     }
 }
 
@@ -174,6 +226,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         Storage.saveProducts(products);
     }).then(()=>{
         ui.getBugButtons();
+        ui.cartLogic();
     });
 
 });
